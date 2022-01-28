@@ -1,12 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useReducer, useMemo } from "react";
 import { Routes, Route } from "react-router-dom";
-import { ROUTES } from "./constants";
+import { ROUTES, FORM_INITIAL_VALUES } from "./constants";
 import { Home, MoreInfo, Confirmation, Error, Success } from "./pages";
+import { formReducer } from "./reducer";
+import { FormContext } from "./context";
 
-class App extends Component {
-  render() {
-    return (
-      <div>
+const App = () => {
+  const [state, dispatch] = useReducer(formReducer, FORM_INITIAL_VALUES);
+
+  const contextValue = useMemo(() => {
+    return { state, dispatch };
+  }, [state, dispatch]);
+
+  return (
+    <div>
+      <FormContext.Provider value={contextValue}>
         <header>
           <h1>Welcome to Upgrade challenge</h1>
         </header>
@@ -20,9 +28,9 @@ class App extends Component {
           <Route path={ROUTES.ERROR} element={<Error />} />
           <Route path={ROUTES.SUCCESS} element={<Success />} />
         </Routes>
-      </div>
-    );
-  }
-}
+      </FormContext.Provider>
+    </div>
+  );
+};
 
 export default App;

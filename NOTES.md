@@ -46,8 +46,9 @@
 ## Timesheet
 
 - 11h-11h45: add react router, pages and formik
-- 14h30- :
+- 14h30-15:52:
   -- add eslint, prettier and setup vscode to apply code formating on auto save. (I like clean code 🥰) but I had some issue for installing the latest eslint. CRA did not like that very much.
   -- start creating components
   -- having a snack
-  --
+- 15:52-:
+  -- Create context to store the form data

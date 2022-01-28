@@ -1,29 +1,14 @@
-import React from "react";
-import { Formik, Field, Form } from "formik";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Buttons";
 import { ROUTES } from "../constants";
+import { FormContext } from "../context";
 
 const Confirmation = () => {
+  const { state, dispatch } = useContext(FormContext);
   const navigate = useNavigate();
 
-  const onSubmit = (values, { setSubmitting }) => {
-    // setTimeout(() => {
-    //   alert(JSON.stringify(values, null, 2));
-    //   setSubmitting(false);
-    // }, 400);
-    navigate(ROUTES.CONFIRMATION);
-  };
-
-  const validate = (values) => {
-    const errors = {};
-    // if (!values.email) {
-    //   errors.email = "Required";
-    // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-    //   errors.email = "Invalid email address";
-    // }
-    return errors;
-  };
+  console.log("state", state);
 
   const onClickBack = () => {
     navigate(ROUTES.MOFE_INFO);

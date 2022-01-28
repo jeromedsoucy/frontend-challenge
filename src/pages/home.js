@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useContext, useReducer } from "react";
 import { Formik, Field, Form } from "formik";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Buttons";
 import { ROUTES } from "../constants";
+import { FormContext } from "../context";
 
 const Home = () => {
+  const { state, dispatch } = useContext(FormContext);
   const navigate = useNavigate();
-  const onSubmit = (values, { setSubmitting }) => {
-    // setTimeout(() => {
-    //   alert(JSON.stringify(values, null, 2));
-    //   setSubmitting(false);
-    // }, 400);
 
+  console.log("state", state);
+  const onSubmit = (values, { setSubmitting }) => {
+    dispatch({ type: "update", payload: values });
     navigate(ROUTES.MORE_INFO);
   };
 
