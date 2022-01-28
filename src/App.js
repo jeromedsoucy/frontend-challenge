@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import {
-  Home,
-  MoreInfo,
-  Confirmation,
-  Error,
-  Success,
-} from './pages';
+import { Routes, Route } from "react-router-dom";
+import { ROUTES } from "./constants";
+import { Home, MoreInfo, Confirmation, Error, Success } from "./pages";
 
 class App extends Component {
   render() {
@@ -19,16 +14,15 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="more-info" element={<MoreInfo />} />
-        <Route path="confirmation" element={<Confirmation />} />
-        <Route path="error" element={<Error />} />
-        <Route path="success" element={<Success />} />
-      </Routes>
+          <Route path={ROUTES.HOME} element={<Home />} />
+          <Route path={ROUTES.MORE_INFO} element={<MoreInfo />} />
+          <Route path={ROUTES.CONFIRMATION} element={<Confirmation />} />
+          <Route path={ROUTES.ERROR} element={<Error />} />
+          <Route path={ROUTES.SUCCESS} element={<Success />} />
+        </Routes>
       </div>
     );
   }
 }
 
 export default App;
-

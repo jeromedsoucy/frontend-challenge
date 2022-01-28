@@ -20,6 +20,11 @@
 - loading
 - fix github ssh stuff
 
+# Bonus
+
+- Nice UI: bootstrap, mui & google material
+- Terms and conditions overlay
+
 # Specifications
 
 - The list of colors to be displayed in the /more-info page should be built from the response to a GET request to http://localhost:3001/api/colors
@@ -40,4 +45,9 @@
 
 ## Timesheet
 
-- 11h-
+- 11h-11h45: add react router, pages and formik
+- 14h30- :
+  -- add eslint, prettier and setup vscode to apply code formating on auto save. (I like clean code 🥰) but I had some issue for installing the latest eslint. CRA did not like that very much.
+  -- start creating components
+  -- having a snack
+  --

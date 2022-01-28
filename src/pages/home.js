@@ -1,70 +1,56 @@
-import React, { Component } from "react";
-import { Formik } from 'formik';
-class Home extends Component {
-  render() {
-    return (
-      <div>
+import React from "react";
+import { Formik, Field, Form } from "formik";
+import { useNavigate } from "react-router-dom";
+import Button from "../components/Buttons";
+import { ROUTES } from "../constants";
 
-       Home
+const Home = () => {
+  const navigate = useNavigate();
+  const onSubmit = (values, { setSubmitting }) => {
+    // setTimeout(() => {
+    //   alert(JSON.stringify(values, null, 2));
+    //   setSubmitting(false);
+    // }, 400);
 
-       <Formik
-       initialValues={{ email: '', password: '' }}
-       validate={values => {
-         const errors = {};
-         if (!values.email) {
-           errors.email = 'Required';
-         } else if (
-           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-         ) {
-           errors.email = 'Invalid email address';
-         }
-         return errors;
-       }}
-       onSubmit={(values, { setSubmitting }) => {
-         setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
-         }, 400);
-       }}
-     >
-       {({
-         values,
-         errors,
-         touched,
-         handleChange,
-         handleBlur,
-         handleSubmit,
-         isSubmitting,
-         /* and other goodies */
-       }) => (
-         <form onSubmit={handleSubmit}>
-           <input
-             type="email"
-             name="email"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.email}
-           />
-           {errors.email && touched.email && errors.email}
-           <input
-             type="password"
-             name="password"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.password}
-           />
-           {errors.password && touched.password && errors.password}
-           <button type="submit" disabled={isSubmitting}>
-             Submit
-           </button>
-         </form>
-       )}
-     </Formik>
+    navigate(ROUTES.MORE_INFO);
+  };
 
-     
-      </div>
-    );
-  }
-}
+  const validate = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Required";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "Invalid email address";
+    }
+    return errors;
+  };
+
+  return (
+    <div>
+      Sign up
+      <Formik
+        initialValues={{ name: "", email: "", password: "" }}
+        validate={validate}
+        onSubmit={onSubmit}
+      >
+        <Form>
+          <div>
+            <label htmlFor="firstName">First Name</label>
+            <Field id="name" name="name" />
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <Field id="email" name="email" type="email" />
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <Field id="password" name="password" type="password" />
+          </div>
+          <Button type="submit">Submit</Button>
+        </Form>
+      </Formik>
+    </div>
+  );
+};
 
 export default Home;
