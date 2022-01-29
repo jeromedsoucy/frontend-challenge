@@ -58,5 +58,8 @@
 - 19:30-19:45 (15min)
   -- fix issue related to context not keeping the state across pages
   -- update the sate on each step and display the content in Confirmation page.
-  - 20:30
+  - 20:30-21:15 (45min)
     -- implement submit api logic (success vs error)
+    -- add loading when interacting with APIs
+    -- reset store when user restart the process from success or error page
+    -- prefill the forms with the data in the store when user go back and forward the steps
