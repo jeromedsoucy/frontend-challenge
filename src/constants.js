@@ -13,3 +13,5 @@ export const FORM_INITIAL_VALUES = {
   color: "",
   terms: false,
 };
+
+export const API_URL = "http://localhost:3001/api";

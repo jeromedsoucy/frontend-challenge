@@ -1,15 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Buttons";
 import { ROUTES } from "../constants";
-import { FormContext } from "../context";
+import { useForm } from "../context";
+import { getColors } from "../services";
 
 const MoreInfo = () => {
-  const { state, dispatch } = useContext(FormContext);
+  const { dispatch } = useForm();
+  const [colors, setColors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  // const { state, dispatch } = useContext(FormContext);
   const navigate = useNavigate();
 
-  console.log("more info state", state);
+  useEffect(() => {
+    setIsLoading(true);
+    getColors().then((data) => {
+      setColors(data);
+      setIsLoading(false);
+    });
+  }, colors);
 
   const onSubmit = (values) => {
     dispatch({ type: "update", payload: values });
@@ -32,6 +42,7 @@ const MoreInfo = () => {
 
   return (
     <div>
+      {!!isLoading && "loading"}
       Additional Information
       <Formik
         initialValues={{ color: "", agreement: "" }}
@@ -50,9 +61,11 @@ const MoreInfo = () => {
               <label htmlFor="firstName">Your ❤️ color</label>
               <Field name="color" as="select">
                 <option value="">-</option>
-                <option value="red">Red</option>
-                <option value="green">Green</option>
-                <option value="blue">Blue</option>
+                {colors.map((color, index) => (
+                  <option value={color} key={index}>
+                    {color}
+                  </option>
+                ))}
               </Field>
             </div>
             <div>

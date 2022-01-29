@@ -24,6 +24,7 @@
 
 - Nice UI: bootstrap, mui & google material
 - Terms and conditions overlay
+- redirect to home after reload
 
 # Specifications
 
@@ -45,10 +46,14 @@
 
 ## Timesheet
 
-- 11h-11h45: add react router, pages and formik
-- 14h30-15:52:
+- 11h-11h45 (45min): add react router, pages and formik
+- 14h30-15:45 (1h15):
   -- add eslint, prettier and setup vscode to apply code formating on auto save. (I like clean code 🥰) but I had some issue for installing the latest eslint. CRA did not like that very much.
   -- start creating components
   -- having a snack
-- 15:52-:
+- 15:50-16:50 (1h):
   -- Create context to store the form data
+- 19:30-19:45 (15min)
+  -- fix issue related to context not keeping the state across pages
+  -- update the sate on each step and display the content in Confirmation page.
+  - 20:15

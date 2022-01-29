@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Buttons";
 import { ROUTES } from "../constants";
-import { FormContext } from "../context";
+import { useForm } from "../context";
 
 const Confirmation = () => {
-  const { state, dispatch } = useContext(FormContext);
+  const { state } = useForm();
   const navigate = useNavigate();
-
-  console.log("state", state);
 
   const onClickBack = () => {
     navigate(ROUTES.MOFE_INFO);
@@ -18,15 +16,18 @@ const Confirmation = () => {
     navigate(ROUTES.SUCCESS);
   };
 
+  console.log(state);
   return (
     <div>
       Confirmation
       <ul>
-        <li>First Name:</li>
-        <li>Email: </li>
-        <li>Password</li>
-        <li>Favorite Color</li>
-        <li>Terms and conditions</li>
+        <li>First Name: {state.name}</li>
+        <li>Email: {state.email}</li>
+        <li>Password: {state.password}</li>
+        <li>Favorite Color: {state.color}</li>
+        <li>
+          Terms and conditions: {state.agreement ? "agreed" : "disagreed"}
+        </li>
       </ul>
       <div>
         <Button onClick={onClickBack}>Back</Button>
