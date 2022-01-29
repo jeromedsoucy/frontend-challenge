@@ -1,4 +1,5 @@
-import React, { createContext, useReducer, useContext, useMemo } from "react";
+import React, { createContext, useReducer, useContext } from "react";
+import { FORM_INITIAL_VALUES } from "./constants";
 
 const CountContext = createContext();
 
@@ -10,6 +11,9 @@ function countReducer(state, action) {
         ...action.payload,
       };
     }
+    case "reset": {
+      return FORM_INITIAL_VALUES;
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -17,7 +21,7 @@ function countReducer(state, action) {
 }
 
 function FormProvider({ children }) {
-  const [state, dispatch] = useReducer(countReducer, { count: 0 });
+  const [state, dispatch] = useReducer(countReducer, FORM_INITIAL_VALUES);
 
   const contextValue = { state, dispatch };
   // Note: we could memoize this if things get crazy... which is not the case here

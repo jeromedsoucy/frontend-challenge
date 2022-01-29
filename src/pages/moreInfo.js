@@ -7,7 +7,7 @@ import { useForm } from "../context";
 import { getColors } from "../services";
 
 const MoreInfo = () => {
-  const { dispatch } = useForm();
+  const { state, dispatch } = useForm();
   const [colors, setColors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   // const { state, dispatch } = useContext(FormContext);
@@ -22,7 +22,10 @@ const MoreInfo = () => {
   }, colors);
 
   const onSubmit = (values) => {
-    dispatch({ type: "update", payload: values });
+    dispatch({
+      type: "update",
+      payload: values,
+    });
     navigate(ROUTES.CONFIRMATION);
   };
 
@@ -44,18 +47,8 @@ const MoreInfo = () => {
     <div>
       {!!isLoading && "loading"}
       Additional Information
-      <Formik
-        initialValues={{ color: "", agreement: "" }}
-        validate={validate}
-        onSubmit={onSubmit}
-      >
-        {({
-          isSubmitting,
-          getFieldProps,
-          handleChange,
-          handleBlur,
-          values,
-        }) => (
+      <Formik initialValues={state} validate={validate} onSubmit={onSubmit}>
+        {({ isSubmitting }) => (
           <Form>
             <div>
               <label htmlFor="firstName">Your ❤️ color</label>
@@ -69,17 +62,12 @@ const MoreInfo = () => {
               </Field>
             </div>
             <div>
-              <Field
-                type="checkbox"
-                id="agreement"
-                name="agreement"
-                value="agreed"
-              />
+              <Field type="checkbox" name="terms" />
               <label> I agree to the Term and conditions.</label>
             </div>
             <Button onClick={onClickBack}>Back</Button>
             <Button type="submit" disabled={isSubmitting}>
-              Submit
+              Next
             </Button>
           </Form>
         )}

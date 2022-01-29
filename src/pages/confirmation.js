@@ -1,24 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Buttons";
 import { ROUTES } from "../constants";
 import { useForm } from "../context";
+import { submit } from "../services";
 
 const Confirmation = () => {
   const { state } = useForm();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onClickBack = () => {
-    navigate(ROUTES.MOFE_INFO);
+    navigate(ROUTES.MORE_INFO);
   };
 
   const onClickSubmit = () => {
-    navigate(ROUTES.SUCCESS);
+    setIsLoading(true);
+
+    submit(state).then((data) => {
+      setIsLoading(false);
+      if (data.status === 400) {
+        // TODO: display backend error somewhere. In a toast maybe?
+        navigate(ROUTES.ERROR);
+      } else {
+        navigate(ROUTES.SUCCESS);
+      }
+    });
   };
 
-  console.log(state);
   return (
     <div>
+      {!!isLoading && "loading"}
       Confirmation
       <ul>
         <li>First Name: {state.name}</li>

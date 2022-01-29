@@ -6,7 +6,7 @@ import { ROUTES } from "../constants";
 import { useForm } from "../context";
 
 const Home = () => {
-  const { dispatch } = useForm();
+  const { state, dispatch } = useForm();
   const navigate = useNavigate();
 
   const onSubmit = (values, { setSubmitting }) => {
@@ -27,11 +27,7 @@ const Home = () => {
   return (
     <div>
       Sign up
-      <Formik
-        initialValues={{ name: "", email: "", password: "" }}
-        validate={validate}
-        onSubmit={onSubmit}
-      >
+      <Formik initialValues={state} validate={validate} onSubmit={onSubmit}>
         <Form>
           <div>
             <label htmlFor="firstName">First Name</label>
@@ -45,7 +41,7 @@ const Home = () => {
             <label htmlFor="password">Password</label>
             <Field id="password" name="password" type="password" />
           </div>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Next</Button>
         </Form>
       </Formik>
     </div>
