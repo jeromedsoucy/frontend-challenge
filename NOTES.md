@@ -7,17 +7,11 @@
 - ~~/confirmation: The third step is a read-only confirmation screen displaying the data collected in the 2 previous steps and a button to submit the form. A back button allows going back to to the previous step.~~
 - ~~/success: Final page to be shown if the form is successfully submitted. A restart button resets the data and returns to the initial step.~~
 - ~~/error An error page the user should be taken to if there are any server errors when submitting the form.~~
-- ~~save form info in the context~~
-- ~~Services:~~
-  -- ~~call color api~~
-  -- ~~submit api~~
-- ~~fix github ssh stuff~~
-- ~~loading~~
-- ~~reset the store when starting over from sucess or error page~~
 - ~~The list of colors to be displayed in the /more-info page should be built from the response to a GET request to http://localhost:3001/api/colors~~
 - ~~To submit the form data, use a POST request with an application/json content type to the http://localhost:3001/api/submit endpoint.~~
 - ~~Show the success / error page according to the HTTP status returned from the submit request.~~
 - ~~Add a loading indicator (spinner) to all API requests in order to provide UX feedback since the mocked server will have a delayed response~~
+- ~~Use react context to save form data across page~~
 
 # Bonus
 
