@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Buttons";
+import { Layout, Button, Header, Label } from "../components";
 import { ROUTES } from "../constants";
 import { useForm } from "../context";
 
@@ -25,26 +25,38 @@ const Home = () => {
   };
 
   return (
-    <div>
-      Sign up
+    <Layout>
+      <Header>Sign up</Header>
       <Formik initialValues={state} validate={validate} onSubmit={onSubmit}>
-        <Form>
-          <div>
-            <label htmlFor="firstName">First Name</label>
-            <Field id="name" name="name" />
+        <Form className="row g-3">
+          <div className="col-md-12">
+            <Label htmlFor="name">First Name</Label>
+            <Field id="name" name="name" className="form-control" />
           </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <Field id="email" name="email" type="email" />
+          <div className="col-md-12">
+            <Label htmlFor="email">Email</Label>
+            <Field
+              id="email"
+              name="email"
+              type="email"
+              className="form-control"
+            />
           </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <Field id="password" name="password" type="password" />
+          <div className="col-md-12">
+            <Label htmlFor="password">Password</Label>
+            <Field
+              id="password"
+              name="password"
+              type="password"
+              className="form-control"
+            />
           </div>
-          <Button type="submit">Next</Button>
+          <div className="pt-4">
+            <Button type="submit">Next</Button>
+          </div>
         </Form>
       </Formik>
-    </div>
+    </Layout>
   );
 };
 

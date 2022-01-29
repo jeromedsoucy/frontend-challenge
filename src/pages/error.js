@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Buttons";
+import { Layout, Button, Header } from "../components";
 import { ROUTES } from "../constants";
 import { useForm } from "../context";
 
@@ -14,10 +14,14 @@ const Error = () => {
   };
 
   return (
-    <div>
-      Uh oh, something went wrong. Please try again later.
-      <Button onClick={onClickRestart}>Restart</Button>
-    </div>
+    <Layout>
+      <Header>Error</Header>
+      <p>Uh oh, something went wrong.</p>
+      <p>Please try again later</p>
+      <div className="pt-4">
+        <Button onClick={onClickRestart}>Restart</Button>
+      </div>
+    </Layout>
   );
 };
 

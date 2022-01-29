@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Buttons";
+import { Layout, Button, Header } from "../components";
 import { ROUTES } from "../constants";
 import { useForm } from "../context";
 
@@ -14,10 +14,13 @@ const Success = () => {
   };
 
   return (
-    <div>
-      You should receive a confirmation email soon.
-      <Button onClick={onClickRestart}>Restart</Button>
-    </div>
+    <Layout>
+      <Header>Success</Header>
+      <p>You should receive a confirmation email soon.</p>
+      <div className="pt-4">
+        <Button onClick={onClickRestart}>Restart</Button>
+      </div>
+    </Layout>
   );
 };
 

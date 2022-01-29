@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Buttons";
+import { Layout, Button, Header, Spinner, Label } from "../components";
 import { ROUTES } from "../constants";
 import { useForm } from "../context";
 import { getColors } from "../services";
@@ -9,7 +9,7 @@ import { getColors } from "../services";
 const MoreInfo = () => {
   const { state, dispatch } = useForm();
   const [colors, setColors] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   // const { state, dispatch } = useContext(FormContext);
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ const MoreInfo = () => {
       setColors(data);
       setIsLoading(false);
     });
-  }, colors);
+  }, []);
 
   const onSubmit = (values) => {
     dispatch({
@@ -44,35 +44,55 @@ const MoreInfo = () => {
   };
 
   return (
-    <div>
-      {!!isLoading && "loading"}
-      Additional Information
-      <Formik initialValues={state} validate={validate} onSubmit={onSubmit}>
-        {({ isSubmitting }) => (
-          <Form>
-            <div>
-              <label htmlFor="firstName">Your ❤️ color</label>
-              <Field name="color" as="select">
-                <option value="">-</option>
-                {colors.map((color, index) => (
-                  <option value={color} key={index}>
-                    {color}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div>
-              <Field type="checkbox" name="terms" />
-              <label> I agree to the Term and conditions.</label>
-            </div>
-            <Button onClick={onClickBack}>Back</Button>
-            <Button type="submit" disabled={isSubmitting}>
-              Next
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+    <Layout>
+      <Header>Additional Information</Header>
+      {!!isLoading && <Spinner />}
+      {!isLoading && (
+        <Formik initialValues={state} validate={validate} onSubmit={onSubmit}>
+          {({ isSubmitting }) => (
+            <Form className="row g-3">
+              <div className="col-md-12">
+                <Label htmlFor="color">Color that you ❤️ &nbsp;the most</Label>
+                <Field name="color" as="select" className="form-select">
+                  <option>-</option>
+                  {colors.map((color, index) => (
+                    <option value={color} key={index}>
+                      {color}
+                    </option>
+                  ))}
+                </Field>
+              </div>
+              <div className="col-md-12">
+                <div className="form-check">
+                  <Field
+                    type="checkbox"
+                    name="terms"
+                    id="terms"
+                    className="form-check-input"
+                    style={{ cursor: "pointer" }}
+                  />
+                  <Label
+                    className="form-check-label"
+                    htmlFor="terms"
+                    style={{ cursor: "pointer" }}
+                  >
+                    I agree to the Term and conditions.
+                  </Label>
+                </div>
+              </div>
+              <div>
+                <Button onClick={onClickBack} className="me-2">
+                  Back
+                </Button>
+                <Button type="submit" disabled={isSubmitting}>
+                  Next
+                </Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      )}
+    </Layout>
   );
 };
 

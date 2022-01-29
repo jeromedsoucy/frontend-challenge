@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Buttons";
+import { Layout, Button, Header, Spinner } from "../components";
 import { ROUTES } from "../constants";
 import { useForm } from "../context";
 import { submit } from "../services";
@@ -29,25 +29,31 @@ const Confirmation = () => {
   };
 
   return (
-    <div>
-      {!!isLoading && "loading"}
-      Confirmation
-      <ul>
-        <li>First Name: {state.name}</li>
-        <li>Email: {state.email}</li>
-        <li>Password: {state.password}</li>
-        <li>Favorite Color: {state.color}</li>
-        <li>
-          Terms and conditions: {state.agreement ? "agreed" : "disagreed"}
-        </li>
-      </ul>
-      <div>
-        <Button onClick={onClickBack}>Back</Button>
-        <Button type="submit" onClick={onClickSubmit}>
-          Submit
-        </Button>
-      </div>
-    </div>
+    <Layout>
+      <Header>Confirmation</Header>
+      {!!isLoading && <Spinner />}
+      {!isLoading && (
+        <>
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item">First Name: {state.name}</li>
+            <li className="list-group-item">Email: {state.email}</li>
+            <li className="list-group-item">Password: {state.password}</li>
+            <li className="list-group-item">Favorite Color: {state.color}</li>
+            <li className="list-group-item">
+              Terms and conditions: {state.agreement ? "agreed" : "disagreed"}
+            </li>
+          </ul>
+          <div className="pt-4">
+            <Button onClick={onClickBack} className="me-2">
+              Back
+            </Button>
+            <Button type="submit" onClick={onClickSubmit}>
+              Submit
+            </Button>
+          </div>
+        </>
+      )}
+    </Layout>
   );
 };
 
