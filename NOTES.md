@@ -14,43 +14,28 @@
 - ~~fix github ssh stuff~~
 - ~~loading~~
 - ~~reset the store when starting over from sucess or error page~~
+- ~~The list of colors to be displayed in the /more-info page should be built from the response to a GET request to http://localhost:3001/api/colors~~
+- ~~To submit the form data, use a POST request with an application/json content type to the http://localhost:3001/api/submit endpoint.~~
+- ~~Show the success / error page according to the HTTP status returned from the submit request.~~
+- ~~Add a loading indicator (spinner) to all API requests in order to provide UX feedback since the mocked server will have a delayed response~~
 
 # Bonus
 
-- Nice UI: bootstrap, mui & google material
-  - Redirect the user to the first screen after refresh
+- ~~Nice UI: bootstrap, mui & google material~~
 - Terms and conditions overlay
 - Redirect to home after reload
-- form
-  - validation
-  - components
-
-# Specifications
-
-- The list of colors to be displayed in the /more-info page should be built from the response to a GET request to http://localhost:3001/api/colors
-- To submit the form data, use a POST request with an application/json content type to the http://localhost:3001/api/submit endpoint. The submitted data should look like:
-
-```
-{
-    "name": "",
-    "email": "",
-    "password": "",
-    "color": "",
-    "terms": false
-}
-```
-
-- Show the success / error page according to the HTTP status returned from the submit request.
-- Add a loading indicator (spinner) to all API requests in order to provide UX feedback since the mocked server will have a delayed response
+- ~~Components~~
+- Form validation
 
 ## Timesheet
 
-- 11h-11h45 (45min): add react router, pages and formik
-- 14h30-15:45 (1h15):
+- 11h-11h45 (45min)
+- add react router, pages and formik
+- 14h30-15:45 (1h15min)
   - add eslint, prettier and setup vscode to apply code formating on auto save. (I like clean code 🥰) but I had some issue for installing the latest eslint. CRA did not like that very much.
   - start creating components
   - having a snack
-- 15:50-16:50 (1h):
+- 15:50-16:50 (1h)
   - Create context to store the form data
 - 19:30-19:45 (15min)
   - fix issue related to context not keeping the state across pages
@@ -60,7 +45,7 @@
   - add loading when interacting with APIs
   - reset store when user restart the process from success or error page
   - prefill the forms with the data in the store when user go back and forward the steps
-- 21:30-22:50
+- 21:30-22:40 (1h10min)
   - Make it pretty with bootstrap
   - Add progress bar at the top
   - Add pretty loading when interacting with APIs
